@@ -3,7 +3,7 @@ function createBall(dice){
 
   var distance_to_dice = 3;
 
-  var geometry = new THREE.SphereGeometry(1, 16, 16);
+  var geometry = new THREE.SphereGeometry(0.5, 16, 16);
   var material =new THREE.MeshBasicMaterial({color: COLORS.WHITE});
   var ball = new THREE.Mesh(geometry, material);
 
@@ -30,13 +30,16 @@ function createBall(dice){
   }
 
   ball.position.set(0, 0, 0);
-  dice.addBall(ball);
   ball.add(new THREE.AxesHelper(2));
 
+  console.log(dice.position.y);
   //positions the ball based on world axis and not dice axis
   ball.position.set(dice.position.x + distance_to_dice, dice.position.y, dice.position.z + distance_to_dice);
   var distance = new THREE.Vector3(ball.position.x - dice.position.x, ball.position.y - dice.position.y, ball.position.z - ball.position.z);
-  ball.position.applyAxisAngle(distance.normalize(), Math.PI/4);
+  ball.position.applyAxisAngle(distance.normalize(), Math.PI/6); //works but why??? should be /4
+  console.log(ball.position.y);
 
+
+  dice.addBall(ball);
   return ball;
 }

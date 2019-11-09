@@ -48,7 +48,6 @@ function createDice(x, y, z){
     mesh.rotation.x = Math.PI/4;
     dice.add(mesh);
     scene.add(dice);
-    dice.position.set(0, 2, 0);
-    console.log(dice);
+    dice.position.set(x, y, z);
     return dice;
 }

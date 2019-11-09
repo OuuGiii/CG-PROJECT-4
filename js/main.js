@@ -129,7 +129,7 @@ function createScene() {
 	'use strict';
 	scene = new THREE.Scene();
 	scene.chessBoard = createChessBoard(0, 0, 0);
-	scene.dice = createDice(0, 2, 0);
+	scene.dice = createDice(0, 1 + Math.cos(Math.PI/4)/2, 0);
 	scene.ball = createBall(scene.dice);
 	scene.paused = false; //if scene is paused or not (S)
 }
