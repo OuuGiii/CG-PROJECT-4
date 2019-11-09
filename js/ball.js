@@ -2,11 +2,10 @@ function createBall(dice){
   'use strict';
 
   var distance_to_dice = 3;
-  var ball = new THREE.Object3D();
 
   var geometry = new THREE.SphereGeometry(1, 16, 16);
-  var material =new THREE.MeshBasicMaterial({color: COLORS.WHITE, wireframe: true});
-  var mesh = new THREE.Mesh(geometry, material);
+  var material =new THREE.MeshBasicMaterial({color: COLORS.WHITE});
+  var ball = new THREE.Mesh(geometry, material);
 
   ball.materials = {
     BASIC: new THREE.MeshBasicMaterial({color: COLORS.WHITE}),
@@ -14,13 +13,24 @@ function createBall(dice){
     PHONG: new THREE.MeshLambertMaterial({color: COLORS.WHITE})
   };
 
+  ball.changeMaterial = function(type) {
+    switch (type) {
+      case 'BASIC':
+        this.material = this.materials.BASIC;
+        break;
+      case 'LAMBERT':
+        this.material = this.materials.LAMBERT;
+      case 'PHONG':
+        this.material = this.materials.PHONG;
+    }
+  };
+
   ball.movement = function(){
     this.rotation.y += 0.05; //add to globals
   }
 
-  mesh.position.set(0, 0, 0);
-  ball.add(mesh);
-  dice.add(ball);
+  ball.position.set(0, 0, 0);
+  dice.addBall(ball);
   ball.add(new THREE.AxesHelper(2));
 
   //positions the ball based on world axis and not dice axis

@@ -88,10 +88,14 @@ function toggleLightingCalculation() {
 
 	if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.LAMBERT || MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG) {
 		scene.chessBoard.changeMaterial(MATERIAL_TYPE.BASIC);
+		scene.dice.changeMaterial(MATERIAL_TYPE.BASIC);
+		scene.ball.changeMaterial(MATERIAL_TYPE.BASIC);
 		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.BASIC;
 		console.log('Turned lightning calculations OFF');
 	} else if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.BASIC) {
 		scene.chessBoard.changeMaterial(MATERIAL_TYPE.LAMBERT);
+		scene.dice.changeMaterial(MATERIAL_TYPE.LAMBERT);
+		scene.ball.changeMaterial(MATERIAL_TYPE.LAMBERT);
 		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.LAMBERT;
 		console.log('Turned lightning calculations ON');
 	}
@@ -102,10 +106,14 @@ function toggleShadowType() {
 
 	if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.LAMBERT) {
 		scene.chessBoard.changeMaterial(MATERIAL_TYPE.PHONG);
+		scene.dice.changeMaterial(MATERIAL_TYPE.PHONG);
+		scene.ball.changeMaterial(MATERIAL_TYPE.PHONG);
 		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.PHONG;
 		console.log('Turned material to PHONG');
 	} else if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG) {
 		scene.chessBoard.changeMaterial(MATERIAL_TYPE.LAMBERT);
+		scene.ball.changeMaterial(MATERIAL_TYPE.LAMBERT);
+		scene.dice.changeMaterial(MATERIAL_TYPE.LAMBERT);
 		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.LAMBERT;
 		console.log('Turned material to LAMBERT');
 	}
