@@ -14,24 +14,51 @@ const COLORS = {
 	PERU_BROWN: 0xcd853f
 };
 
-/**
- * THIS IS NOT IN USE, BUT AN IDEA OF HOW MATERIALS COULD BE USED :)
+const TEXTURES = {
+	WOOD: new THREE.TextureLoader().load('img/wood.png')
+};
 
 // MATERIALS
+const _chessboardExteriorMaterials = {
+	basic: [
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN })
+	],
+	lambert: [
+		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN })
+	],
+	phong: [
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN })
+	]
+};
+
 const MATERIALS = {
 	CHESSBOARD: {
 		EXTERIOR: {
-			BASIC: new THREE.MeshBasicMaterial({ color: COLORS.BROWN, wireframe: false }),
-			LAMBERT: new THREE.MeshPhongMaterial({ color: COLORS.BROWN, wireframe: false }),
-			PHONG: new THREE.MeshLambertMaterial({ color: COLORS.BROWN, wireframe: false })
+			BASIC: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.basic),
+			LAMBERT: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.lambert),
+			PHONG: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.phong)
 		},
 		INTERIOR: {
 			SQUARES: {
-				BASIC: new THREE.MeshBasicMaterial({ color: COLORS.BLACK, wireframe: false }),
-				LAMBERT: new THREE.MeshPhongMaterial({ color: COLORS.BLACK, wireframe: false }),
-				PHONG: new THREE.MeshLambertMaterial({ color: COLORS.BLACK, wireframe: false })
+				BASIC: new THREE.MeshBasicMaterial({ color: COLORS.BLACK }),
+				LAMBERT: new THREE.MeshPhongMaterial({ color: COLORS.BLACK }),
+				PHONG: new THREE.MeshLambertMaterial({ color: COLORS.BLACK })
 			}
 		}
 	}
 };
-*/
