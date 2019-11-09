@@ -115,7 +115,8 @@ function createScene() {
 	'use strict';
 	scene = new THREE.Scene();
 	scene.chessBoard = createChessBoard(0, 0, 0);
-	scene.dice = createDice(0,2,0);
+	scene.dice = createDice(0, 2, 0);
+	scene.ball = createBall(scene.dice);
 	scene.paused = false; //if scene is paused or not (S)
 }
 
@@ -139,7 +140,7 @@ function animate() {
 	}
 	if(!scene.paused){
 		scene.dice.rotation.y += 0.01; //add to globals (dont want merge errors right now)
-		//pause ball
+		scene.ball.movement();
 	}
 
 	render();

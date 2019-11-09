@@ -24,8 +24,8 @@ function createDice(x, y, z){
     };
 
     mesh.position.set(0, 0, 0);
-    mesh.rotation.z = Math.atan(1/Math.sqrt(2))*180/Math.PI;
-    mesh.rotation.x = Math.atan(1/Math.sqrt(2))*180/Math.PI;
+    mesh.rotation.z = Math.PI/4;
+    mesh.rotation.x = Math.PI/4;
     dice.add(mesh);
     scene.add(dice);
     dice.position.set(0, 2, 0);
