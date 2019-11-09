@@ -9,7 +9,7 @@ var delta = 0;
 var triggerLightningCalculation = false;
 var triggerShadowType = false;
 
-var directionalLight = null;
+var directionalLight = null, pointLight = null;
 
 var MATERIAL_TYPE = {
 	ACTIVE: 'BASIC',
@@ -50,6 +50,10 @@ function onKeyPress(e) {
 		case 77: // M
 		case 109: // m
 			triggerShadowType = true;
+			break;
+		case 80: //P
+		case 112: //p
+			pointLight.turnTheSwitch();
 			break;
 		case 83: //S
 		case 115: //s
@@ -161,6 +165,16 @@ function animate() {
 	requestAnimationFrame(animate);
 }
 
+function createLights(){
+	'use strict';
+
+	directionalLight = createDirectionalLight(0, 0, 10);
+	directionalLight.target = scene.chessBoard;
+	directionalLight.position.set(0, 20, 10);
+
+	pointLight = createPointLight(-3, 1, 3);
+}
+
 function init() {
 	'use strict';
 
@@ -171,14 +185,12 @@ function init() {
 	document.body.appendChild(renderer.domElement);
 
 	createScene();
-	directionalLight = createDirectionalLight(0, 0, 10);
-	directionalLight.target = scene.chessBoard;
-	directionalLight.position.set(0, 20, 10);
+
 	cameras.orthographicCamera = createFixedOrthographicCamera();
 	cameras.perspectiveCamera = createFixedPerspectiveCamera();
 	scene.activeCamera = cameras.perspectiveCamera;
 	render();
-
+	createLights();
 	window.addEventListener('resize', onResize);
 	window.addEventListener('keydown', onKeyDown);
 	window.addEventListener('keypress', onKeyPress);
