@@ -173,7 +173,7 @@ function init() {
 	createScene();
 	directionalLight = createDirectionalLight(0, 0, 10);
 	directionalLight.target = scene.chessBoard;
-	directionalLight.position.set(0, 20, 0);
+	directionalLight.position.set(0, 20, 10);
 	cameras.orthographicCamera = createFixedOrthographicCamera();
 	cameras.perspectiveCamera = createFixedPerspectiveCamera();
 	scene.activeCamera = cameras.perspectiveCamera;
