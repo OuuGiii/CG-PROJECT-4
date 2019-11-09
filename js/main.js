@@ -42,8 +42,16 @@ function onKeyPress(e) {
 			triggerLightningCalculation = true;
 			break;
 		case 77: // M
-		case 109: //m
+		case 109: // m
 			triggerShadowType = true;
+			break;
+		case 87: // W
+		case 119: // w
+			scene.traverse(function(node) {
+				if (node instanceof THREE.Mesh) {
+					node.material.wireframe = !node.material.wireframe;
+				}
+			});
 			break;
 	}
 }
