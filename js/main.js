@@ -53,6 +53,10 @@ function onKeyPress(e) {
 				}
 			});
 			break;
+		case 83: //S
+		case 115: //s
+			scene.paused = !scene.paused;
+			break;
 	}
 }
 
@@ -111,6 +115,8 @@ function createScene() {
 	'use strict';
 	scene = new THREE.Scene();
 	scene.chessBoard = createChessBoard(0, 0, 0);
+	scene.dice = createDice(0,2,0);
+	scene.paused = false; //if scene is paused or not (S)
 }
 
 function render() {
@@ -131,6 +137,11 @@ function animate() {
 		toggleShadowType();
 		triggerShadowType = false;
 	}
+	if(!scene.paused){
+		scene.dice.rotation.y += 0.01; //add to globals (dont want merge errors right now)
+		//pause ball
+	}
+
 	render();
 	requestAnimationFrame(animate);
 }
