@@ -56,6 +56,7 @@ function onResize() {
 function createScene() {
 	'use strict';
 	scene = new THREE.Scene();
+	scene.chessBoard = createChessBoard(0, 0, 0);
 }
 
 function render() {
