@@ -9,6 +9,8 @@ var delta = 0;
 var triggerLightningCalculation = false;
 var triggerShadowType = false;
 
+var directionalLight = null;
+
 var MATERIAL_TYPE = {
 	ACTIVE: 'BASIC',
 	BASIC: 'BASIC',
@@ -37,6 +39,10 @@ function onKeyPress(e) {
 			break;
 		case 53: //5
 			break;
+		case 68: //D
+		case 100: //d
+			directionalLight.turnTheSwitch();
+			break;
 		case 76: // L
 		case 108: // l
 			triggerLightningCalculation = true;
@@ -45,6 +51,10 @@ function onKeyPress(e) {
 		case 109: // m
 			triggerShadowType = true;
 			break;
+		case 83: //S
+		case 115: //s
+			scene.paused = !scene.paused;
+			break;
 		case 87: // W
 		case 119: // w
 			scene.traverse(function(node) {
@@ -52,10 +62,6 @@ function onKeyPress(e) {
 					node.material.wireframe = !node.material.wireframe;
 				}
 			});
-			break;
-		case 83: //S
-		case 115: //s
-			scene.paused = !scene.paused;
 			break;
 	}
 }
@@ -165,6 +171,9 @@ function init() {
 	document.body.appendChild(renderer.domElement);
 
 	createScene();
+	directionalLight = createDirectionalLight(0, 0, 10);
+	directionalLight.target = scene.chessBoard;
+	directionalLight.position.set(0, 20, 0);
 	cameras.orthographicCamera = createFixedOrthographicCamera();
 	cameras.perspectiveCamera = createFixedPerspectiveCamera();
 	scene.activeCamera = cameras.perspectiveCamera;
