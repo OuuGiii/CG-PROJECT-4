@@ -11,8 +11,40 @@ function createChessBoard(x, y, z) {
 	chessBoard.exterior = createExterior(chessBoard);
 	chessBoard.interior = createInterior(chessBoard);
 
-	chessBoard.position.set(x, y, z);
+	chessBoard.changeMaterial = function(type) {
+		switch (type) {
+			case 'BASIC':
+				this.exterior.left.material = this.exterior.left.materials.BASIC;
+				this.exterior.right.material = this.exterior.right.materials.BASIC;
+				this.exterior.top.material = this.exterior.top.materials.BASIC;
+				this.exterior.bottom.material = this.exterior.bottom.materials.BASIC;
 
+				for (var square of this.interior.squares) {
+					square.material = square.materials.BASIC;
+				}
+				break;
+			case 'LAMBERT':
+				this.exterior.left.material = this.exterior.left.materials.LAMBERT;
+				this.exterior.right.material = this.exterior.right.materials.LAMBERT;
+				this.exterior.top.material = this.exterior.top.materials.LAMBERT;
+				this.exterior.bottom.material = this.exterior.bottom.materials.LAMBERT;
+				for (var square of this.interior.squares) {
+					square.material = square.materials.LAMBERT;
+				}
+				break;
+			case 'PHONG':
+				this.exterior.left.material = this.exterior.left.materials.PHONG;
+				this.exterior.right.material = this.exterior.right.materials.PHONG;
+				this.exterior.top.material = this.exterior.top.materials.PHONG;
+				this.exterior.bottom.material = this.exterior.bottom.materials.PHONG;
+				for (var square of this.interior.squares) {
+					square.material = square.materials.PHONG;
+				}
+				break;
+		}
+	};
+
+	chessBoard.position.set(x, y, z);
 	scene.add(chessBoard);
 
 	return chessBoard;
@@ -46,6 +78,12 @@ function createExteriorPart(exterior, width, height, depth, x, y, z) {
 	var exteriorPart = new THREE.Mesh(geometry, material);
 
 	// TODO: ADD TEXTURE
+
+	exteriorPart.materials = {
+		BASIC: new THREE.MeshBasicMaterial({ color: exteriorPart.material.color }),
+		LAMBERT: new THREE.MeshPhongMaterial({ color: exteriorPart.material.color }),
+		PHONG: new THREE.MeshLambertMaterial({ color: exteriorPart.material.color })
+	};
 
 	exteriorPart.position.set(x, y, z);
 
@@ -100,7 +138,13 @@ function createSquare(interior, squares, x, z, use_dark_color) {
 
 	var square = new THREE.Mesh(geometry, material);
 
-	// TODO: ADD TEXTURE AND DIFFERENT MATERIAL
+	square.materials = {
+		BASIC: new THREE.MeshBasicMaterial({ color: square.material.color }),
+		LAMBERT: new THREE.MeshPhongMaterial({ color: square.material.color }),
+		PHONG: new THREE.MeshLambertMaterial({ color: square.material.color })
+	};
+
+	// TODO: ADD TEXTURE
 
 	square.position.set(x, 0, z);
 

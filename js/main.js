@@ -6,6 +6,16 @@ var renderer, scene;
 var clock = new THREE.Clock();
 var delta = 0;
 
+var triggerLightningCalculation = false;
+var triggerShadowType = false;
+
+var MATERIAL_TYPE = {
+	ACTIVE: 'BASIC',
+	BASIC: 'BASIC',
+	LAMBERT: 'LAMBERT',
+	PHONG: 'PHONG'
+};
+
 function onKeyDown(e) {
 	'use strict';
 	switch (e.keyCode) {
@@ -26,6 +36,14 @@ function onKeyPress(e) {
 		case 52: //4
 			break;
 		case 53: //5
+			break;
+		case 76: // L
+		case 108: // l
+			triggerLightningCalculation = true;
+			break;
+		case 77: // M
+		case 109: //m
+			triggerShadowType = true;
 			break;
 	}
 }
@@ -53,6 +71,34 @@ function onResize() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
+function toggleLightingCalculation() {
+	'use strict';
+
+	if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.LAMBERT || MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG) {
+		scene.chessBoard.changeMaterial(MATERIAL_TYPE.BASIC);
+		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.BASIC;
+		console.log('Turned lightning calculations OFF');
+	} else if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.BASIC) {
+		scene.chessBoard.changeMaterial(MATERIAL_TYPE.LAMBERT);
+		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.LAMBERT;
+		console.log('Turned lightning calculations ON');
+	}
+}
+
+function toggleShadowType() {
+	'use strict';
+
+	if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.LAMBERT) {
+		scene.chessBoard.changeMaterial(MATERIAL_TYPE.PHONG);
+		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.PHONG;
+		console.log('Turned material to PHONG');
+	} else if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG) {
+		scene.chessBoard.changeMaterial(MATERIAL_TYPE.LAMBERT);
+		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.LAMBERT;
+		console.log('Turned material to LAMBERT');
+	}
+}
+
 function createScene() {
 	'use strict';
 	scene = new THREE.Scene();
@@ -69,6 +115,14 @@ function animate() {
 
 	delta = clock.getDelta();
 	// Under here the parts that should be animated should be added
+	if (triggerLightningCalculation === true) {
+		toggleLightingCalculation();
+		triggerLightningCalculation = false;
+	}
+	if (triggerShadowType === true) {
+		toggleShadowType();
+		triggerShadowType = false;
+	}
 	render();
 	requestAnimationFrame(animate);
 }
