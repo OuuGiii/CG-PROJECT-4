@@ -2,8 +2,6 @@ const CHESSBOARD_WIDTH = 10;
 const CHESSBOARD_HIGHT = 1;
 const SQUARE_WIDTH = 1;
 
-const WOOD_TEXTURE = new THREE.TextureLoader().load('img/wood.png');
-
 function createChessBoard(x, y, z) {
 	var chessBoard = new THREE.Object3D();
 
@@ -75,7 +73,7 @@ function createExterior(chessBoard) {
 
 function createExteriorPart(exterior, width, height, depth, x, y, z) {
 	'use strict';
-	var material = new THREE.MeshBasicMaterial({ map: WOOD_TEXTURE, color: COLORS.BROWN, wireframe: false });
+	var material = new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, wireframe: false });
 	var geometry = new THREE.BoxGeometry(width, height, depth);
 	var exteriorPart = new THREE.Mesh(geometry, material);
 
@@ -135,15 +133,23 @@ function createSquare(interior, squares, x, z, use_dark_color) {
 	var geometry = new THREE.BoxGeometry(1, 1, 1);
 	var material;
 
-	if (use_dark_color) material = new THREE.MeshBasicMaterial({ map: WOOD_TEXTURE, color: COLORS.SADDLE_BROWN });
-	else material = new THREE.MeshBasicMaterial({ map: WOOD_TEXTURE, color: COLORS.PERU_BROWN });
-
+	if (use_dark_color) {
+		material = new THREE.MeshBasicMaterial({
+			map: TEXTURES.WOOD,
+			color: COLORS.SADDLE_BROWN
+		});
+	} else {
+		material = new THREE.MeshBasicMaterial({
+			map: TEXTURES.WOOD,
+			color: COLORS.PERU_BROWN
+		});
+	}
 	var square = new THREE.Mesh(geometry, material);
 
 	square.materials = {
-		BASIC: new THREE.MeshBasicMaterial({ map: WOOD_TEXTURE, color: square.material.color }),
-		LAMBERT: new THREE.MeshPhongMaterial({ map: WOOD_TEXTURE, color: square.material.color }),
-		PHONG: new THREE.MeshLambertMaterial({ map: WOOD_TEXTURE, color: square.material.color })
+		BASIC: new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: square.material.color }),
+		LAMBERT: new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: square.material.color }),
+		PHONG: new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: square.material.color })
 	};
 
 	// TODO: ADD TEXTURE

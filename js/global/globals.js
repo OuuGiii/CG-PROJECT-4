@@ -52,13 +52,14 @@ const MATERIALS = {
 			BASIC: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.basic),
 			LAMBERT: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.lambert),
 			PHONG: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.phong)
-		},
+		}
+		/*
 		INTERIOR: {
 			SQUARES: {
 				BASIC: new THREE.MeshBasicMaterial({ color: COLORS.BLACK }),
 				LAMBERT: new THREE.MeshPhongMaterial({ color: COLORS.BLACK }),
 				PHONG: new THREE.MeshLambertMaterial({ color: COLORS.BLACK })
 			}
-		}
+		}*/
 	}
 };
