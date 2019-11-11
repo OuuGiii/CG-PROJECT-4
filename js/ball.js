@@ -4,12 +4,12 @@ function createBall(dice){
   var distance_to_dice = 3;
 
   var geometry = new THREE.SphereGeometry(0.5, 16, 16);
-  var material =new THREE.MeshBasicMaterial({color: COLORS.WHITE});
+  var material =new THREE.MeshBasicMaterial({color: COLORS.WHITE, map: TEXTURES.LENA});
   var ball = new THREE.Mesh(geometry, material);
 
   ball.materials = {
-    BASIC: new THREE.MeshBasicMaterial({color: COLORS.WHITE}),
-    PHONG: new THREE.MeshLambertMaterial({color: COLORS.WHITE})
+    BASIC: new THREE.MeshBasicMaterial({color: COLORS.WHITE, map: TEXTURES.LENA}),
+    PHONG: new THREE.MeshLambertMaterial({color: COLORS.WHITE, map: TEXTURES.LENA})
   };
 
   ball.changeMaterial = function(type) {
