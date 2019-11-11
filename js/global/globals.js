@@ -15,7 +15,14 @@ const COLORS = {
 };
 
 const TEXTURES = {
-	WOOD: new THREE.TextureLoader().load('img/wood.png')
+	WOOD: new THREE.TextureLoader().load('img/wood.png'),
+	WOODBMP: new THREE.TextureLoader().load('img/woodbmp.png'),
+	DICE1: new THREE.TextureLoader().load('img/dice1.png'),
+	DICE2: new THREE.TextureLoader().load('img/dice2.png'),
+	DICE3: new THREE.TextureLoader().load('img/dice3.png'),
+	DICE4: new THREE.TextureLoader().load('img/dice4.png'),
+	DICE5: new THREE.TextureLoader().load('img/dice5.png'),
+	DICE6: new THREE.TextureLoader().load('img/dice6.png')
 };
 
 // MATERIALS
@@ -37,12 +44,39 @@ const _chessboardExteriorMaterials = {
 		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN })
 	],
 	phong: [
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN })
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP })
+	]
+};
+
+const _diceMaterials = {
+	basic: [
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE })
+	],
+	lambert: [
+		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE }),
+		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE  })
+	],
+	phong: [
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE, bumpMap: TEXTURES.DICE2}),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE, bumpMap: TEXTURES.DICE3}),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE, bumpMap: TEXTURES.DICE1}),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE, bumpMap: TEXTURES.DICE4}),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE, bumpMap: TEXTURES.DICE5}),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE, bumpMap: TEXTURES.DICE6 })
 	]
 };
 

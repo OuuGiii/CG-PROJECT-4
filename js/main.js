@@ -2,7 +2,7 @@ var cameras = {
 	perspectiveCamera: null,
 	orthographicCamera: null
 };
-var renderer, scene;
+var renderer, scene, controls;
 var clock = new THREE.Clock();
 var delta = 0;
 
@@ -161,6 +161,7 @@ function animate() {
 		scene.ball.movement();
 	}
 
+	controls.update();
 	render();
 	requestAnimationFrame(animate);
 }
@@ -189,6 +190,10 @@ function init() {
 	cameras.orthographicCamera = createFixedOrthographicCamera();
 	cameras.perspectiveCamera = createFixedPerspectiveCamera();
 	scene.activeCamera = cameras.perspectiveCamera;
+
+	controls = new THREE.OrbitControls(scene.activeCamera, renderer.domElement);
+	controls.enableZoom = true;
+
 	render();
 	createLights();
 	window.addEventListener('resize', onResize);
