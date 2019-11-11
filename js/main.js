@@ -8,6 +8,8 @@ var delta = 0;
 
 var triggerLightningCalculation = false;
 
+var ballMovement = true;
+
 var directionalLight = null,
 	pointLight = null;
 
@@ -37,6 +39,11 @@ function onKeyPress(e) {
 		case 52: //4
 			break;
 		case 53: //5
+			break;
+		case 66: //B
+		case 98: //b
+			ballMovement = !ballMovement;
+			console.log('The ball is ' + (ballMovement === true) ? 'moving' : 'not moving');
 			break;
 		case 68: //D
 		case 100: //d
@@ -135,8 +142,11 @@ function animate() {
 	}
 
 	scene.dice.rotation.y += 1 * delta; //add to globals (dont want merge errors right now)
-	scene.ball.rotation.y += 1 * delta;
-	scene.ball.rotateAroundPoint(scene.dice.position, delta);
+
+	if (ballMovement == true) {
+		scene.ball.rotation.y += 1 * delta;
+		scene.ball.rotateAroundPoint(scene.dice.position, delta);
+	}
 
 	controls.update();
 	render();
