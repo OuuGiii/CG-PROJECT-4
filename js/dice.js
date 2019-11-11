@@ -32,6 +32,7 @@ function createDice(x, y, z){
     mesh.position.set(0, 0, 0);
     mesh.rotation.z = Math.PI/4;
     mesh.rotation.x = Math.PI/4;
+    mesh.castShadow = true;
     dice.add(mesh);
     scene.add(dice);
     dice.position.set(x, y, z);

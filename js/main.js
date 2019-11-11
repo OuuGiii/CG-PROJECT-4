@@ -152,6 +152,7 @@ function init() {
 	'use strict';
 
 	renderer = new THREE.WebGLRenderer({ antialias: true });
+	renderer.shadowMap.enabled = true;
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
 

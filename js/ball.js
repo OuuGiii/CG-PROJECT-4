@@ -27,14 +27,13 @@ function createBall(dice){
   }
 
   ball.position.set(0, 0, 0);
-  ball.add(new THREE.AxesHelper(2));
 
   //positions the ball based on world axis and not dice axis
   ball.position.set(dice.position.x + distance_to_dice, dice.position.y, dice.position.z + distance_to_dice);
   var distance = new THREE.Vector3(ball.position.x - dice.position.x, ball.position.y - dice.position.y, ball.position.z - ball.position.z);
   ball.position.applyAxisAngle(distance.normalize(), Math.PI/6); //works but why??? should be /4
 
-
+  ball.castShadow = true;
   dice.addBall(ball);
   return ball;
 }
