@@ -5,7 +5,6 @@ function createDice(x, y, z){
 
     dice.materials = {
       BASIC: _diceMaterials.basic,
-      LAMBERT: _diceMaterials.lambert,
       PHONG: _diceMaterials.phong
     };
 
@@ -17,9 +16,6 @@ function createDice(x, y, z){
   		switch (type) {
   			case 'BASIC':
   				this.children[0].material = this.materials.BASIC;
-  				break;
-  			case 'LAMBERT':
-  				this.children[0].material = this.materials.LAMBERT;
   				break;
   			case 'PHONG':
   				this.children[0].material = this.materials.PHONG;
@@ -40,12 +36,4 @@ function createDice(x, y, z){
     scene.add(dice);
     dice.position.set(x, y, z);
     return dice;
-}
-
-function createDiceTexture(){
-    'use strict';
-
-    var materialArray = [
-
-    ]
 }

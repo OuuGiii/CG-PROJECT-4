@@ -35,14 +35,6 @@ const _chessboardExteriorMaterials = {
 		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
 		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN })
 	],
-	lambert: [
-		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 })
-	],
 	phong: [
 		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
 		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
@@ -62,21 +54,13 @@ const _diceMaterials = {
 		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE }),
 		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE })
 	],
-	lambert: [
-		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE, bumpMap: TEXTURES.DICE5 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE, bumpMap: TEXTURES.DICE2 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE, bumpMap: TEXTURES.DICE3 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE, bumpMap: TEXTURES.DICE4 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE, bumpMap: TEXTURES.DICE1 }),
-		new THREE.MeshLambertMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE, bumpMap: TEXTURES.DICE6 })
-	],
 	phong: [
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE, bumpMap: TEXTURES.DICE5 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE, bumpMap: TEXTURES.DICE2 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE, bumpMap: TEXTURES.DICE3 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE, bumpMap: TEXTURES.DICE4 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE, bumpMap: TEXTURES.DICE1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE, bumpMap: TEXTURES.DICE6 })
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE, bumpMap: TEXTURES.DICE5, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE, bumpMap: TEXTURES.DICE2, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE, bumpMap: TEXTURES.DICE3, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE, bumpMap: TEXTURES.DICE4, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE, bumpMap: TEXTURES.DICE1, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE, bumpMap: TEXTURES.DICE6, bumpScale: 0.05 })
 	]
 };
 
@@ -84,7 +68,6 @@ const MATERIALS = {
 	CHESSBOARD: {
 		EXTERIOR: {
 			BASIC: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.basic),
-			LAMBERT: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.lambert),
 			PHONG: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.phong)
 		}
 		/*

@@ -9,7 +9,6 @@ function createBall(dice){
 
   ball.materials = {
     BASIC: new THREE.MeshBasicMaterial({color: COLORS.WHITE}),
-    LAMBERT: new THREE.MeshPhongMaterial({color: COLORS.WHITE}),
     PHONG: new THREE.MeshLambertMaterial({color: COLORS.WHITE})
   };
 
@@ -18,8 +17,6 @@ function createBall(dice){
       case 'BASIC':
         this.material = this.materials.BASIC;
         break;
-      case 'LAMBERT':
-        this.material = this.materials.LAMBERT;
       case 'PHONG':
         this.material = this.materials.PHONG;
     }

@@ -23,15 +23,6 @@ function createChessBoard(x, y, z) {
 					square.material = square.materials.BASIC;
 				}
 				break;
-			case 'LAMBERT':
-				this.exterior.left.material = this.exterior.left.materials.LAMBERT;
-				this.exterior.right.material = this.exterior.right.materials.LAMBERT;
-				this.exterior.top.material = this.exterior.top.materials.LAMBERT;
-				this.exterior.bottom.material = this.exterior.bottom.materials.LAMBERT;
-				for (var square of this.interior.squares) {
-					square.material = square.materials.LAMBERT;
-				}
-				break;
 			case 'PHONG':
 				this.exterior.left.material = this.exterior.left.materials.PHONG;
 				this.exterior.right.material = this.exterior.right.materials.PHONG;
@@ -81,7 +72,6 @@ function createExteriorPart(exterior, width, height, depth, x, y, z) {
 
 	exteriorPart.materials = {
 		BASIC: MATERIALS.CHESSBOARD.EXTERIOR.BASIC,
-		LAMBERT: MATERIALS.CHESSBOARD.EXTERIOR.LAMBERT,
 		PHONG: MATERIALS.CHESSBOARD.EXTERIOR.PHONG
 	};
 
@@ -149,7 +139,6 @@ function createSquare(interior, squares, x, z, use_dark_color) {
 	square.materials = {
 		BASIC: new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 }),
 		PHONG: new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 }),
-		LAMBERT: new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 })
 	};
 
 	// TODO: ADD TEXTURE

@@ -7,14 +7,12 @@ var clock = new THREE.Clock();
 var delta = 0;
 
 var triggerLightningCalculation = false;
-var triggerShadowType = false;
 
 var directionalLight = null, pointLight = null;
 
 var MATERIAL_TYPE = {
 	ACTIVE: 'BASIC',
 	BASIC: 'BASIC',
-	LAMBERT: 'LAMBERT',
 	PHONG: 'PHONG'
 };
 
@@ -46,10 +44,6 @@ function onKeyPress(e) {
 		case 76: // L
 		case 108: // l
 			triggerLightningCalculation = true;
-			break;
-		case 77: // M
-		case 109: // m
-			triggerShadowType = true;
 			break;
 		case 80: //P
 		case 112: //p
@@ -96,36 +90,18 @@ function onResize() {
 function toggleLightingCalculation() {
 	'use strict';
 
-	if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.LAMBERT || MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG) {
+	if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG) {
 		scene.chessBoard.changeMaterial(MATERIAL_TYPE.BASIC);
 		scene.dice.changeMaterial(MATERIAL_TYPE.BASIC);
 		scene.ball.changeMaterial(MATERIAL_TYPE.BASIC);
 		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.BASIC;
 		console.log('Turned lightning calculations OFF');
 	} else if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.BASIC) {
-		scene.chessBoard.changeMaterial(MATERIAL_TYPE.LAMBERT);
-		scene.dice.changeMaterial(MATERIAL_TYPE.LAMBERT);
-		scene.ball.changeMaterial(MATERIAL_TYPE.LAMBERT);
-		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.LAMBERT;
-		console.log('Turned lightning calculations ON');
-	}
-}
-
-function toggleShadowType() {
-	'use strict';
-
-	if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.LAMBERT) {
 		scene.chessBoard.changeMaterial(MATERIAL_TYPE.PHONG);
 		scene.dice.changeMaterial(MATERIAL_TYPE.PHONG);
 		scene.ball.changeMaterial(MATERIAL_TYPE.PHONG);
 		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.PHONG;
-		console.log('Turned material to PHONG');
-	} else if (MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG) {
-		scene.chessBoard.changeMaterial(MATERIAL_TYPE.LAMBERT);
-		scene.ball.changeMaterial(MATERIAL_TYPE.LAMBERT);
-		scene.dice.changeMaterial(MATERIAL_TYPE.LAMBERT);
-		MATERIAL_TYPE.ACTIVE = MATERIAL_TYPE.LAMBERT;
-		console.log('Turned material to LAMBERT');
+		console.log('Turned lightning calculations ON');
 	}
 }
 
@@ -151,10 +127,6 @@ function animate() {
 	if (triggerLightningCalculation === true) {
 		toggleLightingCalculation();
 		triggerLightningCalculation = false;
-	}
-	if (triggerShadowType === true) {
-		toggleShadowType();
-		triggerShadowType = false;
 	}
 	if(!scene.paused){
 		scene.dice.rotation.y += 0.01; //add to globals (dont want merge errors right now)
