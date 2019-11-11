@@ -63,20 +63,3 @@ const _diceMaterials = {
 		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE, bumpMap: TEXTURES.DICE6, bumpScale: 0.05 })
 	]
 };
-
-const MATERIALS = {
-	CHESSBOARD: {
-		EXTERIOR: {
-			BASIC: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.basic),
-			PHONG: new THREE.MeshFaceMaterial(_chessboardExteriorMaterials.phong)
-		}
-		/*
-		INTERIOR: {
-			SQUARES: {
-				BASIC: new THREE.MeshBasicMaterial({ color: COLORS.BLACK }),
-				LAMBERT: new THREE.MeshPhongMaterial({ color: COLORS.BLACK }),
-				PHONG: new THREE.MeshLambertMaterial({ color: COLORS.BLACK })
-			}
-		}*/
-	}
-};

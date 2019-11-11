@@ -64,15 +64,14 @@ function createExterior(chessBoard) {
 
 function createExteriorPart(exterior, width, height, depth, x, y, z) {
 	'use strict';
-	var material = new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, wireframe: false });
 	var geometry = new THREE.BoxGeometry(width, height, depth);
-	var exteriorPart = new THREE.Mesh(geometry, material);
+	var exteriorPart = new THREE.Mesh(geometry, _chessboardExteriorMaterials.basic);
 
 	// TODO: ADD TEXTURE
 
 	exteriorPart.materials = {
-		BASIC: MATERIALS.CHESSBOARD.EXTERIOR.BASIC,
-		PHONG: MATERIALS.CHESSBOARD.EXTERIOR.PHONG
+		BASIC: _chessboardExteriorMaterials.basic,
+		PHONG: _chessboardExteriorMaterials.phong
 	};
 
 	exteriorPart.position.set(x, y, z);
@@ -138,7 +137,7 @@ function createSquare(interior, squares, x, z, use_dark_color) {
 
 	square.materials = {
 		BASIC: new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 }),
-		PHONG: new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 }),
+		PHONG: new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 })
 	};
 
 	// TODO: ADD TEXTURE
