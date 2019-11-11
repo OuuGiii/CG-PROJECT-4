@@ -111,7 +111,7 @@ function createScene() {
 	scene = new THREE.Scene();
 	scene.chessBoard = createChessBoard(0, 0, 0);
 	scene.dice = createDice(0, 1 + Math.cos(Math.PI / 4) / 2, 0);
-	scene.ball = createBall(scene.dice);
+	scene.ball = createBall(3, 1, 1);
 	scene.paused = false; //if scene is paused or not (S)
 }
 
@@ -135,7 +135,8 @@ function animate() {
 	}
 
 	scene.dice.rotation.y += 1 * delta; //add to globals (dont want merge errors right now)
-	scene.ball.movement(delta);
+	scene.ball.rotation.y += 1 * delta;
+	scene.ball.rotateAroundPoint(scene.dice.position, delta);
 
 	controls.update();
 	render();

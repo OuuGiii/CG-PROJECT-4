@@ -1,7 +1,5 @@
-function createBall(dice) {
+function createBall(x, y, z) {
 	'use strict';
-
-	var distance_to_dice = 3;
 
 	var geometry = new THREE.SphereGeometry(0.5, 16, 16);
 	var material = new THREE.MeshBasicMaterial({ color: COLORS.WHITE, map: TEXTURES.LENA });
@@ -22,18 +20,23 @@ function createBall(dice) {
 		}
 	};
 
-	ball.movement = function(delta) {
-		this.rotation.y += 1 * delta; //add to globals
+	// One way to move the ball around a point
+	ball.rotateAroundPoint = function(point, delta) {
+		var vectorToPoint = new THREE.Vector3(0, 0, 0);
+		vectorToPoint.x = point.x - this.position.x;
+		vectorToPoint.z = point.z - this.position.z;
+
+		var movementVector = new THREE.Vector3(0, 0, 0);
+		movementVector.x = vectorToPoint.z;
+		movementVector.z = -vectorToPoint.x;
+		movementVector = movementVector.normalize();
+
+		this.position.addScaledVector(movementVector, delta);
 	};
 
-	ball.position.set(0, 0, 0);
-
-	//positions the ball based on world axis and not dice axis
-	ball.position.set(dice.position.x + distance_to_dice, dice.position.y, dice.position.z + distance_to_dice);
-	var distance = new THREE.Vector3(ball.position.x - dice.position.x, ball.position.y - dice.position.y, ball.position.z - ball.position.z);
-	ball.position.applyAxisAngle(distance.normalize(), Math.PI / 6); //works but why??? should be /4
-
+	ball.position.set(x, y, z);
 	ball.castShadow = true;
-	dice.addBall(ball);
+	scene.add(ball);
+
 	return ball;
 }

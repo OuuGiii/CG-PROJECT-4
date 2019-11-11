@@ -7,7 +7,7 @@ function createPointLight(x, y, z) {
 	pointLight.turnTheSwitch = function() {
 		'use strict';
 		this.visible = !this.visible;
-		console.log('Turned the pointLight' + (this.light.visible == true ? ' ON' : ' OFF'));
+		console.log('Turned the pointLight' + (this.visible == true ? ' ON' : ' OFF'));
 	};
 
 	pointLight.position.set(x, y, z);
@@ -15,9 +15,6 @@ function createPointLight(x, y, z) {
 
 	return pointLight;
 }
-
-
-
 
 function createLight() {
 	'use strict';
