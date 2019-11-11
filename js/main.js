@@ -145,13 +145,14 @@ function createLights(){
 	directionalLight.target = scene.chessBoard;
 	directionalLight.position.set(0, 20, 10);
 
-	pointLight = createPointLight(-3, 1, 3);
+	pointLight = createPointLight(-1.5, 1, 1.5);
 }
 
 function init() {
 	'use strict';
 
 	renderer = new THREE.WebGLRenderer({ antialias: true });
+	renderer.shadowMap.enabled = true;
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
 

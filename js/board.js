@@ -75,6 +75,7 @@ function createExteriorPart(exterior, width, height, depth, x, y, z) {
 	};
 
 	exteriorPart.position.set(x, y, z);
+	exteriorPart.receiveShadow = true;
 
 	exterior.add(exteriorPart);
 
@@ -136,13 +137,14 @@ function createSquare(interior, squares, x, z, use_dark_color) {
 	var square = new THREE.Mesh(geometry, material);
 
 	square.materials = {
-		BASIC: new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 }),
+		BASIC: new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP }),
 		PHONG: new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 })
 	};
 
 	// TODO: ADD TEXTURE
 
 	square.position.set(x, 0, z);
+	square.receiveShadow = true;
 
 	interior.add(square);
 

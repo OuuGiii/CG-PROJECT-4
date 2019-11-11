@@ -25,11 +25,5 @@ function createLight() {
 
 	light.castShadow = true;
 
-	light.shadow.mapSize.width = 1024;
-	light.shadow.mapSize.height = 1024;
-
-	light.shadow.camera.near = 100;
-	light.shadow.camera.far = 4000;
-	light.shadow.camera.fov = 300;
 	return light;
 }
