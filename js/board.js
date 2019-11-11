@@ -147,9 +147,9 @@ function createSquare(interior, squares, x, z, use_dark_color) {
 	var square = new THREE.Mesh(geometry, material);
 
 	square.materials = {
-		BASIC: new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: square.material.color }),
-		LAMBERT: new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: square.material.color }),
-		PHONG: new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: square.material.color })
+		BASIC: new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 }),
+		LAMBERT: new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 }),
+		PHONG: new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 })
 	};
 
 	// TODO: ADD TEXTURE

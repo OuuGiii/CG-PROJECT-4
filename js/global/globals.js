@@ -44,12 +44,12 @@ const _chessboardExteriorMaterials = {
 		new THREE.MeshLambertMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN })
 	],
 	phong: [
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP })
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.5 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.5 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.5 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.5 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.5 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.5 })
 	]
 };
 
