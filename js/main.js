@@ -8,7 +8,8 @@ var delta = 0;
 
 var triggerLightningCalculation = false;
 
-var directionalLight = null, pointLight = null;
+var directionalLight = null,
+	pointLight = null;
 
 var MATERIAL_TYPE = {
 	ACTIVE: 'BASIC',
@@ -109,7 +110,7 @@ function createScene() {
 	'use strict';
 	scene = new THREE.Scene();
 	scene.chessBoard = createChessBoard(0, 0, 0);
-	scene.dice = createDice(0, 1 + Math.cos(Math.PI/4)/2, 0);
+	scene.dice = createDice(0, 1 + Math.cos(Math.PI / 4) / 2, 0);
 	scene.ball = createBall(scene.dice);
 	scene.paused = false; //if scene is paused or not (S)
 }
@@ -123,22 +124,25 @@ function animate() {
 	'use strict';
 
 	delta = clock.getDelta();
+
+	if (scene.paused == true) {
+		delta = 0;
+	}
 	// Under here the parts that should be animated should be added
 	if (triggerLightningCalculation === true) {
 		toggleLightingCalculation();
 		triggerLightningCalculation = false;
 	}
-	if(!scene.paused){
-		scene.dice.rotation.y += 0.01; //add to globals (dont want merge errors right now)
-		scene.ball.movement();
-	}
+
+	scene.dice.rotation.y += 1 * delta; //add to globals (dont want merge errors right now)
+	scene.ball.movement(delta);
 
 	controls.update();
 	render();
 	requestAnimationFrame(animate);
 }
 
-function createLights(){
+function createLights() {
 	'use strict';
 
 	directionalLight = createDirectionalLight(0, 0, 10);
