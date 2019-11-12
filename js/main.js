@@ -118,7 +118,8 @@ function createScene() {
 	scene = new THREE.Scene();
 	scene.chessBoard = createChessBoard(0, 0, 0);
 	scene.dice = createDice(0, 1 + Math.cos(Math.PI / 4) / 2, 0);
-	scene.ball = createBall(3, 1, 1);
+	scene.center = createCenterPoint(0, 0, 0);
+	scene.ball = createBall(scene.center, 3, 1, 1);
 	scene.paused = false; //if scene is paused or not (S)
 }
 
@@ -141,11 +142,19 @@ function animate() {
 		triggerLightningCalculation = false;
 	}
 
-	scene.dice.rotation.y += 1 * delta; //add to globals (dont want merge errors right now)
+	scene.dice.rotation.y += delta; //add to globals (dont want merge errors right now)
 
 	if (ballMovement == true) {
-		scene.ball.rotation.y += 1 * delta;
-		scene.ball.rotateAroundPoint(scene.dice.position, delta);
+		if(scene.ball.speed < BALL_MAX_SPEED)
+			scene.ball.speed += BALL_SPEED_STEP;
+		scene.ball.rotation.y += delta;
+		scene.ball.rotateAroundDice(scene.center, delta*scene.ball.speed);
+	} else{
+		if(scene.ball.speed > 0){
+			scene.ball.speed -= BALL_SPEED_STEP;
+			scene.ball.rotation.y += delta;
+			scene.ball.rotateAroundDice(scene.center, delta*scene.ball.speed);
+		}
 	}
 
 	controls.update();

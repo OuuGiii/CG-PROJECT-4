@@ -1,4 +1,4 @@
-function createBall(x, y, z) {
+function createBall(center, x, y, z) {
 	'use strict';
 
 	var geometry = new THREE.SphereGeometry(0.5, 16, 16);
@@ -20,23 +20,26 @@ function createBall(x, y, z) {
 		}
 	};
 
-	// One way to move the ball around a point
-	ball.rotateAroundPoint = function(point, delta) {
-		var vectorToPoint = new THREE.Vector3(0, 0, 0);
-		vectorToPoint.x = point.x - this.position.x;
-		vectorToPoint.z = point.z - this.position.z;
+	ball.rotateAroundDice = function(center, delta){
+		center.rotation.y += delta;
+	}
 
-		var movementVector = new THREE.Vector3(0, 0, 0);
-		movementVector.x = vectorToPoint.z;
-		movementVector.z = -vectorToPoint.x;
-		movementVector = movementVector.normalize();
-
-		this.position.addScaledVector(movementVector, delta);
-	};
+	ball.speed = 3;
 
 	ball.position.set(x, y, z);
 	ball.castShadow = true;
-	scene.add(ball);
+	center.add(ball);
 
 	return ball;
+}
+
+function createCenterPoint(x, y, z){
+		'use strict';
+
+		var center = new THREE.Object3D();
+
+		center.position.set(0, 0, 0);
+		scene.add(center);
+		center.position.set(x, y, z);
+		return center;
 }

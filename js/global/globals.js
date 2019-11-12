@@ -2,6 +2,10 @@
  * In this file is global constants that is used in this project
  */
 
+ //BALL
+ const BALL_MAX_SPEED = 10;
+ const BALL_SPEED_STEP = 0.1;
+
 // COLORS
 const COLORS = {
 	BROWN: 0x845938,
