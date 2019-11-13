@@ -42,8 +42,10 @@ function onKeyPress(e) {
 			break;
 		case 66: //B
 		case 98: //b
-			ballMovement = !ballMovement;
-			console.log('The ball is ' + (ballMovement === true) ? 'moving' : 'not moving');
+			if (scene.paused == false) {
+				ballMovement = !ballMovement;
+				console.log('The ball is ' + (ballMovement === true) ? 'moving' : 'not moving');
+			}
 			break;
 		case 68: //D
 		case 100: //d
@@ -144,16 +146,17 @@ function animate() {
 
 	scene.dice.rotation.y += delta; //add to globals (dont want merge errors right now)
 
-	if (ballMovement == true) {
-		if(scene.ball.speed < BALL_MAX_SPEED)
-			scene.ball.speed += BALL_SPEED_STEP;
-		scene.ball.rotation.y += delta;
-		scene.ball.rotateAroundDice(scene.center, delta*scene.ball.speed);
-	} else{
-		if(scene.ball.speed > 0){
-			scene.ball.speed -= BALL_SPEED_STEP;
+	if (scene.paused == false) {
+		if (ballMovement == true) {
+			if (scene.ball.speed < BALL_MAX_SPEED) scene.ball.speed += BALL_SPEED_STEP;
 			scene.ball.rotation.y += delta;
-			scene.ball.rotateAroundDice(scene.center, delta*scene.ball.speed);
+			scene.ball.rotateAroundDice(scene.center, delta * scene.ball.speed);
+		} else {
+			if (scene.ball.speed > 0) {
+				scene.ball.speed -= BALL_SPEED_STEP;
+				scene.ball.rotation.y += delta;
+				scene.ball.rotateAroundDice(scene.center, delta * scene.ball.speed);
+			}
 		}
 	}
 
