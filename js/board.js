@@ -122,28 +122,43 @@ function createSquare(interior, squares, x, z, use_dark_color) {
 	'use strict';
 	var geometry = new THREE.BoxGeometry(1, 1, 1);
 	var material;
+	var map, bumpMap;
 
 	if (use_dark_color) {
+		map = TEXTURES.WOOD1;
+		bumpMap = TEXTURES.WOOD1BMP;
 		material = new THREE.MeshBasicMaterial({
-			map: TEXTURES.WOOD,
+			map: map,
 			color: COLORS.SADDLE_BROWN
 		});
 	} else {
+		map = TEXTURES.WOOD2;
+		bumpMap = TEXTURES.WOOD2BMP;
 		material = new THREE.MeshBasicMaterial({
-			map: TEXTURES.WOOD,
+			map: map,
 			color: COLORS.PERU_BROWN
 		});
 	}
 	var square = new THREE.Mesh(geometry, material);
 
 	square.materials = {
-		BASIC: new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP }),
-		PHONG: new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: square.material.color, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.05 })
+		BASIC: new THREE.MeshBasicMaterial({ map: map, color: square.material.color}),
+		PHONG: new THREE.MeshPhongMaterial({ map: map, color: square.material.color, bumpMap: bumpMap, bumpScale: 0.05 })
 	};
 
-	// TODO: ADD TEXTURE
-
 	square.position.set(x, 0, z);
+
+	//random rotation for squares
+	var random = Math.random() * 10;
+	if(0 <= random && random < 2.5){
+		square.rotation.y += 0;
+	} else if (2.5 <= random && random < 5){
+		square.rotation.y += Math.PI/2;
+	} else if (5 <= random && random < 7.5){
+		square.rotation.y += 3 * Math.PI/2;
+	} else{
+		square.rotation.y += Math.PI;
+	}
 	square.receiveShadow = true;
 
 	interior.add(square);

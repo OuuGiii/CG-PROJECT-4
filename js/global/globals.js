@@ -19,8 +19,10 @@ const COLORS = {
 };
 
 const TEXTURES = {
-	WOOD: new THREE.TextureLoader().load('img/wood.png'),
-	WOODBMP: new THREE.TextureLoader().load('img/woodbmp.png'),
+  WOOD1: new THREE.TextureLoader().load('img/wood1.png'),
+	WOOD1BMP: new THREE.TextureLoader().load('img/wood1bmp.png'),
+  WOOD2: new THREE.TextureLoader().load('img/wood2.png'),
+  WOOD2BMP: new THREE.TextureLoader().load('img/wood2bmp.png'),
 	LENA: new THREE.TextureLoader().load('img/lena.png'),
 	DICE1: new THREE.TextureLoader().load('img/dice1.png'),
 	DICE2: new THREE.TextureLoader().load('img/dice2.png'),
@@ -39,20 +41,20 @@ const TEXTURES = {
 // MATERIALS
 const _chessboardExteriorMaterials = {
 	basic: [
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN })
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN })
 	],
 	phong: [
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD, color: COLORS.BROWN, bumpMap: TEXTURES.WOODBMP, bumpScale: 0.1 })
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 })
 	]
 };
 
