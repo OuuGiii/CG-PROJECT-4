@@ -10,6 +10,10 @@ function createPointLight(x, y, z) {
 		console.log('Turned the pointLight' + (this.visible == true ? ' ON' : ' OFF'));
 	};
 
+	pointLight.reset = function() {
+		if(this.visible == false) this.visible = true;
+	}
+
 	pointLight.position.set(x, y, z);
 	scene.add(pointLight);
 

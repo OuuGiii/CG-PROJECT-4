@@ -24,7 +24,12 @@ function createBall(center, x, y, z) {
 		center.rotation.y += delta;
 	}
 
-	ball.speed = 3;
+	ball.reset = function(x, y, z) {
+		ball.position.set(x, y, z);
+		ball.speed = 0;
+	}
+
+	ball.speed = 0;
 
 	ball.position.set(x, y, z);
 	ball.castShadow = true;
@@ -37,6 +42,10 @@ function createCenterPoint(x, y, z){
 		'use strict';
 
 		var center = new THREE.Object3D();
+
+		center.reset = function() {
+			center.rotation.y = 0;
+		}
 
 		center.position.set(0, 0, 0);
 		scene.add(center);

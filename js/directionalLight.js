@@ -19,6 +19,10 @@ function createDirectionalLight(x, y, z) {
 		console.log('Turned the shadows' + (this.shadows == true ? 'ON' : 'OFF'));
 	}
 
+	directionalLight.reset = function() {
+		if(this.visible == false) this.visible = true;
+	}
+
 	scene.add(directionalLight);
 
 	return directionalLight;

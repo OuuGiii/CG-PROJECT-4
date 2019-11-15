@@ -59,6 +59,12 @@ function onKeyPress(e) {
 		case 112: //p
 			pointLight.turnTheSwitch();
 			break;
+		case 82: //R
+		case 114: //s
+			if(scene.paused == true) {
+				scene.restart = true;
+			}
+			break;
 		case 83: //S
 		case 115: //s
 			scene.paused = !scene.paused;
@@ -123,6 +129,7 @@ function createScene() {
 	scene.center = createCenterPoint(0, 0, 0);
 	scene.ball = createBall(scene.center, 3, 1, 1);
 	scene.paused = false; //if scene is paused or not (S)
+	scene.restart = false; //if scene is to be restarted (R)
 }
 
 function render() {
@@ -158,6 +165,18 @@ function animate() {
 				scene.ball.rotateAroundDice(scene.center, delta * scene.ball.speed);
 			}
 		}
+	} else if (scene.restart == true) {
+		console.log('reseting scene');
+		scene.ball.reset(3, 1, 1);
+		scene.dice.reset(0, 1 + Math.cos(Math.PI / 4) / 2, 0);
+		scene.center.reset();
+		directionalLight.reset(); 
+		pointLight.reset();
+		if( MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG ) {
+			toggleLightingCalculation();
+		}
+		scene.paused = false;
+		scene.restart = false;
 	}
 
 	controls.update();
