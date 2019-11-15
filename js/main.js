@@ -170,7 +170,7 @@ function animate() {
 		scene.ball.reset(3, 1, 1);
 		scene.dice.reset(0, 1 + Math.cos(Math.PI / 4) / 2, 0);
 		scene.center.reset();
-		directionalLight.reset(); 
+		directionalLight.reset();
 		pointLight.reset();
 		if( MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG ) {
 			toggleLightingCalculation();
@@ -206,7 +206,6 @@ function init() {
 
 	createScene();
 
-	cameras.orthographicCamera = createFixedOrthographicCamera();
 	cameras.perspectiveCamera = createFixedPerspectiveCamera();
 	scene.activeCamera = cameras.perspectiveCamera;
 
