@@ -2,7 +2,8 @@ var cameras = {
 	perspectiveCamera: null,
 	orthographicCamera: null
 };
-var renderer, scene, controls;
+
+var renderer, scene, pScene, controls, pause;
 var clock = new THREE.Clock();
 var delta = 0;
 
@@ -124,6 +125,7 @@ function toggleLightingCalculation() {
 function createScene() {
 	'use strict';
 	scene = new THREE.Scene();
+	cameras.perspectiveCamera = createFixedPerspectiveCamera();
 	scene.chessBoard = createChessBoard(0, 0, 0);
 	scene.dice = createDice(0, 1 + Math.cos(Math.PI / 4) / 2, 0);
 	scene.center = createCenterPoint(0, 0, 0);
@@ -132,9 +134,22 @@ function createScene() {
 	scene.restart = false; //if scene is to be restarted (R)
 }
 
+function createPauseScene() {
+	'use strict';
+	pScene = new THREE.Scene();
+
+	cameras.orthographicCamera = createFixedOrthographicCamera();
+	pScene.add(cameras.orthographicCamera);
+}
+
 function render() {
 	'use strict';
-	renderer.render(scene, scene.activeCamera);
+	renderer.clear();
+	renderer.render(scene, cameras.perspectiveCamera);
+	if(scene.paused == true){
+		renderer.clearDepth();
+		renderer.render(pScene, cameras.orthographicCamera);
+	}
 }
 
 function animate() {
@@ -199,17 +214,15 @@ function init() {
 
 	renderer = new THREE.WebGLRenderer({ antialias: true });
 	renderer.shadowMap.enabled = true;
+	renderer.autoClear = false;
 
 	renderer.setSize(window.innerWidth, window.innerHeight);
-
 	document.body.appendChild(renderer.domElement);
 
 	createScene();
+	createPauseScene();
 
-	cameras.perspectiveCamera = createFixedPerspectiveCamera();
-	scene.activeCamera = cameras.perspectiveCamera;
-
-	controls = new THREE.OrbitControls(scene.activeCamera, renderer.domElement);
+	controls = new THREE.OrbitControls(cameras.perspectiveCamera, renderer.domElement);
 	controls.enableZoom = true;
 
 	render();

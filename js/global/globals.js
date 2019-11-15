@@ -19,6 +19,7 @@ const COLORS = {
 };
 
 const TEXTURES = {
+  PAUSE: new THREE.TextureLoader().load('img/pause.png'),
   WOOD1: new THREE.TextureLoader().load('img/wood1.png'),
 	WOOD1BMP: new THREE.TextureLoader().load('img/wood1bmp.png'),
   WOOD2: new THREE.TextureLoader().load('img/wood2.png'),
