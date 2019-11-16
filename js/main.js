@@ -183,6 +183,7 @@ function animate() {
 	} else if (scene.restart == true) {
 		console.log('reseting scene');
 		scene.ball.reset(3, 1, 1);
+		ballMovement = true;
 		scene.dice.reset(0, 1 + Math.cos(Math.PI / 4) / 2, 0);
 		scene.center.reset();
 		directionalLight.reset();
