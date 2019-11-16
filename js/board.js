@@ -35,6 +35,11 @@ function createChessBoard(x, y, z) {
 		}
 	};
 
+	chessBoard.toggleWireframe = function(toggle){
+		chessBoard.exterior.toggleWireframe(toggle);
+		chessBoard.interior.toggleWireframe(toggle);
+	}
+
 	chessBoard.position.set(x, y, z);
 	scene.add(chessBoard);
 
@@ -56,6 +61,12 @@ function createExterior(chessBoard) {
 	exterior.right = createExteriorPart(exterior, exterior.width, chessBoard.height, chessBoard.width, positionOfRightExterior, 0, 0);
 	exterior.top = createExteriorPart(exterior, chessBoard.width, chessBoard.height, exterior.width, 0, 0, positionOfTopExterior);
 	exterior.bottom = createExteriorPart(exterior, chessBoard.width, chessBoard.height, exterior.width, 0, 0, positionOfBottomExterior);
+
+	exterior.toggleWireframe = function(toggle){
+		for(var i = 0; i < 6; i++)
+			//works only with left since it updates the global material
+			exterior.left.material[i].wireframe = toggle;
+	}
 
 	chessBoard.add(exterior);
 
@@ -90,6 +101,12 @@ function createInterior(chessBoard) {
 	interior.height = chessBoard.height - 2 * chessBoard.exterior.height;
 
 	interior.squares = createInteriorSquares(interior);
+
+	interior.toggleWireframe = function(toggle){
+		for(var square of interior.squares){
+			square.material.wireframe = toggle;
+		}
+	}
 
 	chessBoard.add(interior);
 
@@ -129,21 +146,23 @@ function createSquare(interior, squares, x, z, use_dark_color) {
 		bumpMap = TEXTURES.WOOD1BMP;
 		material = new THREE.MeshBasicMaterial({
 			map: map,
-			color: COLORS.SADDLE_BROWN
+			color: COLORS.SADDLE_BROWN,
+			wireframe: wires
 		});
 	} else {
 		map = TEXTURES.WOOD2;
 		bumpMap = TEXTURES.WOOD2BMP;
 		material = new THREE.MeshBasicMaterial({
 			map: map,
-			color: COLORS.PERU_BROWN
+			color: COLORS.PERU_BROWN,
+			wireframe: wires
 		});
 	}
 	var square = new THREE.Mesh(geometry, material);
 
 	square.materials = {
-		BASIC: new THREE.MeshBasicMaterial({ map: map, color: square.material.color}),
-		PHONG: new THREE.MeshPhongMaterial({ map: map, color: square.material.color, bumpMap: bumpMap, bumpScale: 0.05 })
+		BASIC: new THREE.MeshBasicMaterial({ map: map, color: square.material.color, wireframe: wires}),
+		PHONG: new THREE.MeshPhongMaterial({ map: map, color: square.material.color, wireframe: wires, bumpMap: bumpMap, bumpScale: 0.05})
 	};
 
 	square.position.set(x, 0, z);

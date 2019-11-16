@@ -1,6 +1,7 @@
 /**
  * In this file is global constants that is used in this project
  */
+ var wires = false;
 
  //BALL
  const BALL_MAX_SPEED = 10;
@@ -42,38 +43,38 @@ const TEXTURES = {
 // MATERIALS
 const _chessboardExteriorMaterials = {
 	basic: [
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN })
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires})
 	],
 	phong: [
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 })
+    new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+    new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+    new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+    new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+    new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.WOOD1, color: COLORS.BROWN, wireframe: wires, bumpMap: TEXTURES.WOOD1BMP, bumpScale: 0.1 })
 	]
 };
 
 const _diceMaterials = {
 	basic: [
-		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE }),
-		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE })
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE, wireframe: wires}),
+		new THREE.MeshBasicMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE, wireframe: wires})
 	],
 	phong: [
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE, bumpMap: TEXTURES.DICE5BMP, bumpScale: 0.05 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE, bumpMap: TEXTURES.DICE2BMP, bumpScale: 0.05 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE, bumpMap: TEXTURES.DICE3BMP, bumpScale: 0.05 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE, bumpMap: TEXTURES.DICE4BMP, bumpScale: 0.05 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE, bumpMap: TEXTURES.DICE1BMP, bumpScale: 0.05 }),
-		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE, bumpMap: TEXTURES.DICE6BMP, bumpScale: 0.05 })
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE5, color: COLORS.WHITE, wireframe: wires, bumpMap: TEXTURES.DICE5BMP, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE2, color: COLORS.WHITE, wireframe: wires, bumpMap: TEXTURES.DICE2BMP, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE3, color: COLORS.WHITE, wireframe: wires, bumpMap: TEXTURES.DICE3BMP, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE4, color: COLORS.WHITE, wireframe: wires, bumpMap: TEXTURES.DICE4BMP, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE1, color: COLORS.WHITE, wireframe: wires, bumpMap: TEXTURES.DICE1BMP, bumpScale: 0.05 }),
+		new THREE.MeshPhongMaterial({ map: TEXTURES.DICE6, color: COLORS.WHITE, wireframe: wires, bumpMap: TEXTURES.DICE6BMP, bumpScale: 0.05 })
 	]
 };

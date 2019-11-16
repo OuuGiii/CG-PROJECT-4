@@ -27,6 +27,12 @@ function createDice(x, y, z) {
 		dice.rotation.y = 0;
 	}
 
+	dice.toggleWireframe = function (toggle) {
+		for(var face of dice.children[0].material){
+			face.wireframe = toggle;
+		}
+	}
+
 	mesh.position.set(0, 0, 0);
 	mesh.rotation.z = Math.PI / 4;
 	mesh.rotation.x = Math.PI / 4;

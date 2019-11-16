@@ -4,10 +4,12 @@ function createPointLight(x, y, z) {
 
 	pointLight.add(createLight());
 
-	pointLight.turnTheSwitch = function() {
+	pointLight.turnTheSwitch = function(toggle) {
 		'use strict';
-		this.visible = !this.visible;
-		console.log('Turned the pointLight' + (this.visible == true ? ' ON' : ' OFF'));
+		if(toggle == "on")
+			this.visible = true;
+		else if(toggle == "off")
+			this.visible = false;
 	};
 
 	pointLight.reset = function() {

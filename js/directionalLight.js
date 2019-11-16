@@ -7,10 +7,12 @@ function createDirectionalLight(x, y, z) {
 	directionalLight.castShadow = true;
 
 
-	directionalLight.turnTheSwitch = function() {
+	directionalLight.turnTheSwitch = function(toggle) {
 		'use strict';
-		this.visible = !this.visible;
-		console.log('Turned the directional light' + (this.visible == true ? ' ON' : ' OFF'));
+		if(toggle == "on")
+			this.visible = true;
+		else if(toggle == "off")
+			this.visible = false;
 	};
 
 	directionalLight.turnTheShadows = function() {

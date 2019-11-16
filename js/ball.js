@@ -2,13 +2,17 @@ function createBall(center, x, y, z) {
 	'use strict';
 
 	var geometry = new THREE.SphereGeometry(0.5, 16, 16);
-	var material = new THREE.MeshBasicMaterial({ color: COLORS.WHITE, map: TEXTURES.LENA });
+	var material = new THREE.MeshBasicMaterial({ color: COLORS.WHITE, map: TEXTURES.LENA, wireframe: wires});
 	var ball = new THREE.Mesh(geometry, material);
 
 	ball.materials = {
-		BASIC: new THREE.MeshBasicMaterial({ color: COLORS.WHITE, map: TEXTURES.LENA }),
-		PHONG: new THREE.MeshLambertMaterial({ color: COLORS.WHITE, map: TEXTURES.LENA })
+		BASIC: new THREE.MeshBasicMaterial({ color: COLORS.WHITE, map: TEXTURES.LENA, wireframe: wires}),
+		PHONG: new THREE.MeshPhongMaterial({ color: COLORS.WHITE, map: TEXTURES.LENA, wireframe: wires, shininess: 200})
 	};
+
+	ball.toggleWireframe = function (toggle) {
+		ball.material.wireframe = toggle;
+	}
 
 	ball.changeMaterial = function(type) {
 		switch (type) {
@@ -33,6 +37,7 @@ function createBall(center, x, y, z) {
 
 	ball.position.set(x, y, z);
 	ball.castShadow = true;
+	ball.receiveShadow = true;
 	center.add(ball);
 
 	return ball;

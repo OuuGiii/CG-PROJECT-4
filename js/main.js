@@ -10,9 +10,10 @@ var delta = 0;
 var triggerLightningCalculation = false;
 
 var ballMovement = true;
-
 var directionalLight = null,
-	pointLight = null;
+		pointLight = null,
+		directionalLightON = true,
+		pointLightON = true;
 
 var MATERIAL_TYPE = {
 	ACTIVE: 'BASIC',
@@ -20,45 +21,35 @@ var MATERIAL_TYPE = {
 	PHONG: 'PHONG'
 };
 
-function onKeyDown(e) {
-	'use strict';
-	switch (e.keyCode) {
-	}
-}
-
 function onKeyPress(e) {
 	'use strict';
 	switch (e.keyCode) {
-		case 48: //0
-			break;
-		case 49: //1
-			break;
-		case 50: //2
-			break;
-		case 51: //3
-			break;
-		case 52: //4
-			break;
-		case 53: //5
-			break;
 		case 66: //B
 		case 98: //b
 			if (scene.paused == false) {
 				ballMovement = !ballMovement;
-				console.log('The ball is ' + (ballMovement === true) ? 'moving' : 'not moving');
+				console.log('The ball is' + (ballMovement == true ? ' moving' : ' stopping'));
 			}
 			break;
 		case 68: //D
 		case 100: //d
-			directionalLight.turnTheSwitch();
+			if(scene.paused == false){
+					directionalLightON = !directionalLightON;
+					console.log('Turned the directional light' + (directionalLightON == true ? ' on' : ' off'));
+			}
 			break;
 		case 76: // L
 		case 108: // l
-			triggerLightningCalculation = true;
+			if(scene.paused == false){
+					triggerLightningCalculation = true;
+			}
 			break;
 		case 80: //P
 		case 112: //p
-			pointLight.turnTheSwitch();
+			if(scene.paused == false){
+					pointLightON = !pointLightON;
+					console.log('Turned the point light' + (pointLightON == true ? ' on' : ' off'));
+			}
 			break;
 		case 82: //R
 		case 114: //s
@@ -69,25 +60,18 @@ function onKeyPress(e) {
 		case 83: //S
 		case 115: //s
 			scene.paused = !scene.paused;
+			console.log('Scene ' + (scene.paused == true ? 'paused' : 'unpaused'));
 			break;
 		case 87: // W
 		case 119: // w
-			scene.traverse(function(node) {
-				if (node instanceof THREE.Mesh) {
-					node.material.wireframe = !node.material.wireframe;
-				}
-			});
+			if(scene.paused == false){
+				wires = !wires;
+				console.log('Wireframe is' + (wires == true ? ' on' : ' off'));
+			}
 			break;
 	}
 }
 
-function onKeyUp(e) {
-	'use strict';
-	switch (e.keyCode) {
-	}
-}
-
-// TODO: Add so EVERY CAMERA RESIZES!!!
 function onResize() {
 	'use strict';
 	cameras.perspectiveCamera.aspect = window.innerWidth / window.innerHeight;
@@ -166,7 +150,21 @@ function animate() {
 		triggerLightningCalculation = false;
 	}
 
-	scene.dice.rotation.y += delta; //add to globals (dont want merge errors right now)
+	toggleWireframe(wires);
+
+	scene.dice.rotation.y += delta;
+
+	if(directionalLightON == true){
+		directionalLight.turnTheSwitch("on");
+	} else{
+		directionalLight.turnTheSwitch("off");
+	}
+
+	if(pointLightON == true){
+		pointLight.turnTheSwitch("on");
+	} else{
+		pointLight.turnTheSwitch("off");
+	}
 
 	if (scene.paused == false) {
 		if (ballMovement == true) {
@@ -181,7 +179,7 @@ function animate() {
 			}
 		}
 	} else if (scene.restart == true) {
-		console.log('reseting scene');
+		console.log('Reseting scene');
 		scene.ball.reset(3, 1, 1);
 		ballMovement = true;
 		scene.dice.reset(0, 1 + Math.cos(Math.PI / 4) / 2, 0);
@@ -191,11 +189,12 @@ function animate() {
 		if( MATERIAL_TYPE.ACTIVE === MATERIAL_TYPE.PHONG ) {
 			toggleLightingCalculation();
 		}
+		wires = false;
 		scene.paused = false;
 		scene.restart = false;
 	}
 
-	controls.update();
+	// controls.update();
 	render();
 	requestAnimationFrame(animate);
 }
@@ -208,6 +207,13 @@ function createLights() {
 	directionalLight.position.set(0, 20, 10);
 
 	pointLight = createPointLight(-1.5, 1, 1.5);
+}
+
+function toggleWireframe(toggle){
+	'use strict';
+	scene.chessBoard.toggleWireframe(toggle);
+	scene.ball.toggleWireframe(toggle);
+	scene.dice.toggleWireframe(toggle);
 }
 
 function init() {
@@ -223,13 +229,11 @@ function init() {
 	createScene();
 	createPauseScene();
 
-	controls = new THREE.OrbitControls(cameras.perspectiveCamera, renderer.domElement);
-	controls.enableZoom = true;
+	// controls = new THREE.OrbitControls(cameras.perspectiveCamera, renderer.domElement);
+	// controls.enableZoom = true;
 
 	render();
 	createLights();
 	window.addEventListener('resize', onResize);
-	window.addEventListener('keydown', onKeyDown);
 	window.addEventListener('keypress', onKeyPress);
-	window.addEventListener('keyup', onKeyUp);
 }
