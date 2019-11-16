@@ -203,8 +203,8 @@ function createLights() {
 	'use strict';
 
 	directionalLight = createDirectionalLight(0, 0, 10);
+	directionalLight.position.set(30, 20, 15);
 	directionalLight.target = scene.chessBoard;
-	directionalLight.position.set(0, 20, 10);
 
 	pointLight = createPointLight(-1.5, 1, 1.5);
 }
